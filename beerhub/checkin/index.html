@@ -191,6 +191,12 @@
         </svg>
         Google Play からダウンロード
       </a>
+
+      <!-- Android版準備中メッセージ -->
+      <div id="android-coming-soon" style="display: none; padding: 16px; background: rgba(255,255,255,0.1); border-radius: 8px; margin: 8px auto; max-width: 280px;">
+        <p style="color: #F5A623; font-weight: 600; margin-bottom: 8px;">Android版は準備中です</p>
+        <p style="color: #999; font-size: 14px;">近日公開予定です。<br>しばらくお待ちください。</p>
+      </div>
     </div>
 
     <!-- 店舗ID表示（デバッグ用） -->
@@ -225,15 +231,18 @@
 
     // ストアリンク設定
     if (isIOS) {
-      // TODO: App Store公開後にIDを更新
-      document.getElementById('ios-link').href = 'https://apps.apple.com/app/id0000000000';
+      document.getElementById('ios-link').href = 'https://apps.apple.com/jp/app/beerhub/id6755505566';
       document.getElementById('android-link').classList.add('hidden');
     } else if (isAndroid) {
-      document.getElementById('android-link').href =
-        'https://play.google.com/store/apps/details?id=com.github.tsukasa19910921.beerhub';
+      // Android版は準備中のため、リンクを非表示にして準備中メッセージを表示
       document.getElementById('ios-link').classList.add('hidden');
+      document.getElementById('android-link').classList.add('hidden');
+      document.getElementById('android-coming-soon').style.display = 'block';
+    } else {
+      // PC等はiOSリンクのみ表示（Android版は準備中）
+      document.getElementById('ios-link').href = 'https://apps.apple.com/jp/app/beerhub/id6755505566';
+      document.getElementById('android-link').classList.add('hidden');
     }
-    // それ以外（PC等）は両方表示
 
     // アプリ起動成功フラグ
     let appOpened = false;
