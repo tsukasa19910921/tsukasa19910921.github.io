@@ -250,6 +250,11 @@
         window.location.href = deepLink;
       }
     }
+
+    // ページ読み込み時に自動でアプリを開く試行
+    if (isValidStoreId) {
+      openApp();
+    }
   </script>
 </body>
 </html>
